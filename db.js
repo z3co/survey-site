@@ -21,14 +21,14 @@ function writeDB(data, nameDB) {
 }
 
 function updateDB(updatedData, nameDB, uniqueIdentifier = "id") {
-	const existingData = readDB(nameDB);
+	const existingData = JSON.parse(readDB(nameDB));
 
 	if (!existingData) {
 		console.error("No existing data found");
 		return;
 	}
-	const indexToUpdate = existingData.findindex(
-		(record) => record[uniqueIdentifier] === updatedRecord[uniqueIdentifier],
+	const indexToUpdate = existingData.findIndex(
+		(record) => record[uniqueIdentifier] === updatedData[uniqueIdentifier],
 	);
 
 	if (indexToUpdate === -1) {
@@ -37,36 +37,36 @@ function updateDB(updatedData, nameDB, uniqueIdentifier = "id") {
 	}
 	existingData[indexToUpdate] = {
 		...existingData[indexToUpdate],
-		...updatedRecord,
+		...updatedData,
 	};
 	writeDB(existingData, nameDB);
 }
 
-function findValidId(nameDB) {
+function findValidId(data) {
 	if (!data) {
 		console.error("There is no data");
 	}
 	let largest = 0;
 	for (let i = 0; i < data.length; i++) {
-		if (data[i].id > data.length) {
+		if (data[i].id > largest) {
 			largest = data[i].id;
 		}
 	}
 	return largest + 1;
 }
 
-function findById(data, id) {
+function findById(data, id, uniqueIdentifier = "id") {
 	if (!data) {
 		console.error("Data is null, provide valid data for finding id");
 	}
 	try {
-		const user = data.findindex((record) => record[uniqueIdentifier] === id);
-		if (user === -1) {
-			throw new Error(
-				"The data you are looking for are not in the data you provided",
-			);
+		let user = null;
+		for (let i = 0; i < data.length; i++) {
+			if (data[i].id === id) {
+				user = data[i];
+			}
 		}
-		return data[user];
+    return user
 	} catch (error) {
 		console.error("An error occured while finding data by id");
 		return null;

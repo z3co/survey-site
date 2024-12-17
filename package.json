@@ -4,7 +4,7 @@
   "description": "A site for answering and creating surveys",
   "main": "index.js",
   "scripts": {
-    "test": "node index.test.js"
+    "test": "node db.test.js"
   },
   "author": "Jeppe Wolff Johansen",
   "license": "MIT",
