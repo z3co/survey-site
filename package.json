@@ -4,16 +4,25 @@
   "description": "A site for answering and creating surveys",
   "main": "index.js",
   "scripts": {
-    "test": "node db.test.js"
+    "test": "node db.test.js",
+    "start": "node --env-file=.env index.js",
+    "dev": "nodemon --ignore 'db.json' index.js"
   },
   "author": "Jeppe Wolff Johansen",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
     "express": "^4.21.2",
     "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.9",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "crypto": "^1.0.1"
   }
 }

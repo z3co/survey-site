@@ -1,0 +1,13 @@
+services:
+  nodejs:
+    build: .
+    container_name: nodejs
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - JWTSECRET=$JWTSECRET
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./db.json:/code/db.json
+    command: node index.js
