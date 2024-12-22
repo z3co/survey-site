@@ -15,5 +15,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 18
+      - run: echo "[]" > db.json
       - run: npm install
       - run: npm test
+      - run: rm db.rm db.json -rf
