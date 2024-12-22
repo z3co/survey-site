@@ -10,6 +10,12 @@ exports.register = async (req, res, next) => {
 	try {
 		const users = db.readDB("db.json");
 
+		if (password.length < 6) {
+			return res.status(400).json({
+				message: "Invalid password, password must be at least 6 characters",
+			});
+		}
+
 		const existingUser = users.find((user) => user.username === username);
 
 		if (existingUser) {
@@ -20,7 +26,7 @@ exports.register = async (req, res, next) => {
 
 		const hashedPassword = await bcrypt.hash(password, 10);
 
-		newUser = new User(db.findValidId(users), username, hashedPassword);
+		const newUser = new User(db.findValidId(users), username, hashedPassword);
 
 		users.push(newUser);
 
@@ -50,3 +56,56 @@ exports.register = async (req, res, next) => {
 		});
 	}
 };
+
+
+exports.login = async (req, res, next) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    res.status(401).json({
+      message: "Invalid username or password",
+      error: "User not found",
+    });
+  }
+
+  try {
+    const users = db.readDB("db.json");
+
+    const user = users.find((user) => user.username === username);
+
+    if (!user) {
+      res.status(401).json({
+        message: "Invalid username or password",
+        error: "User not found",
+      });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      res.status(401).json({
+        message: "Invalid username or password",
+        error: "User not found",
+      });
+    }
+
+    const maxAge = 3 * 60 * 60;
+    const token = jwt.sign({ id: user.id, username }, jwtSecret, {
+      expiresIn: maxAge,
+    });
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      maxAge: maxAge * 1000,
+    });
+    res.status(201).json({
+      message: "User logged in successfully",
+      user: user.id,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+

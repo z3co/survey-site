@@ -10,7 +10,7 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(cookieParser());
 const PORT = 3000;
-app.use("/api/routes", require("./routes.js"));
+app.use("/api/routes", require("./auth/routes.js"));
 
 const Server = app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}`);

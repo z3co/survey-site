@@ -1,3 +1,4 @@
 .gitignore
+*.undo
 .env
 db.json
