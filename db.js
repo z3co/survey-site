@@ -15,6 +15,7 @@ function writeDB(data, nameDB) {
 	try {
 		fs.writeFileSync(nameDB, JSON.stringify(data));
 		console.log("Data saved to DB");
+    return 201
 	} catch (error) {
 		console.error("Failed to write data to db", error);
 	}
