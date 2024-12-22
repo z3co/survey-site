@@ -2,3 +2,4 @@
 *.undo
 .env
 db.json
+/tests
