@@ -7,7 +7,7 @@ on:
     branches: [master, main]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,7 +15,11 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 18
-      - run: echo "[]" > db.json
-      - run: npm install
-      - run: npm test
-      - run: rm db.rm db.json -rf
+      - name: Initialize db 
+        run: echo "[]" > db.json
+      - name: Build
+        run: npm install
+      - name: Run tests
+        run: npm test
+      - name: Clean filesystem
+        run: rm db.rm db.json -rf
