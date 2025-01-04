@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --ci --forceExit",
     "start": "node --env-file=.env index.js",
-    "dev": "nodemon --ignore 'db.json' index.js"
+    "dev": "nodemon --ignore '*.json' index.js"
   },
   "author": "Jeppe Wolff Johansen",
   "license": "MIT",

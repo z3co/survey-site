@@ -3,6 +3,9 @@ const fs = require("fs");
 function readDB(nameDB) {
 	try {
 		const data = fs.readFileSync(nameDB, "utf8");
+		if (data === null) {
+			return [];
+		}
 		return JSON.parse(data);
 	} catch (err) {
 		console.error("Failed to read data", err);
@@ -15,7 +18,7 @@ function writeDB(data, nameDB) {
 	try {
 		fs.writeFileSync(nameDB, JSON.stringify(data));
 		console.log("Data saved to DB");
-    return 201
+		return 201;
 	} catch (error) {
 		console.error("Failed to write data to db", error);
 	}
@@ -67,7 +70,7 @@ function findById(data, id, uniqueIdentifier = "id") {
 				user = data[i];
 			}
 		}
-    return user
+		return user;
 	} catch (error) {
 		console.error("An error occured while finding data by id");
 		return null;
