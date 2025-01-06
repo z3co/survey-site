@@ -1,4 +1,5 @@
 *.env
+*.ico
 *.json
 *.undo
 package-lock.json
