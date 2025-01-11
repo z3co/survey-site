@@ -9,10 +9,11 @@ exports.userAuth = (req, res, next) => {
 				return res.status(401).json({ message: "Not authorized" });
 				// biome-ignore lint/style/noUselessElse: <explanation>
 			} else {
+        req.decodedUsername = decodedToken.username;
 				next();
 			}
 		});
 	} else {
-		return res.status(401).json({ message: "Not authorized" });
+		return res.status(401).send("Not authorized");
 	}
 };

@@ -23,7 +23,7 @@ form.addEventListener("submit", async (e) => {
 				data.error ? data.error : ""
 			}`);
 		}
-		location.assign("/survey");
+		location.assign("/surveyname");
 	} catch (error) {
 		console.error(err.message);
 	}

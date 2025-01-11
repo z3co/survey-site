@@ -1,17 +1,20 @@
 const Survey = require("../models/survey");
 const db = require("../db.js");
+const jwt = require("jsonwebtoken");
+const jwtSecret = process.env.JWTSECRET;
 
 exports.create = async (req, res, next) => {
-	const { name, questions, userId, date } = req.body;
+	const { name, questions, date } = req.body;
 
 	try {
 		const data = db.readDB("surveyDB.json");
-		if (!name || !questions || !userId || !date) {
+		if (!name || !questions || !date) {
 			throw new Error("Not enough data provided");
 		}
+    const username = req.decodedUsername;
 		const newSurvey = new Survey(
 			db.findValidId(data),
-			userId,
+			username,
 			questions,
 			name,
 			date,
@@ -74,3 +77,4 @@ exports.getOne = async (req, res, next) => {
 		});
 	}
 };
+
