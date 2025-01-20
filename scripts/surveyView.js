@@ -50,7 +50,7 @@ submit.addEventListener("click", async () => {
 		} else {
 			console.log("Hello world");
       sessionStorage.setItem("created-survey", true)
-      location.assign("/surveyname");
+      location.assign(`/answer?survey=${data.survey}`);
     }
 	} catch (error) {
 		console.error(error.message);
