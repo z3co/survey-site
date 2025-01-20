@@ -3,14 +3,22 @@ const question = document.querySelector(".question");
 const answer = document.querySelector("#answer");
 const form = document.querySelector("form");
 const surveyId = Number(getUrlParams("survey"));
-const survey = getQuestion(surveyId);
-const number = document.querySelector('.number');
+const number = document.querySelector(".number");
 
+const survey = (async () => {
+  return getQuestion(surveyId)
+})
+
+if (number.textContent === "") {
+	number.textContent = 1;
+}
+
+question.textContent = survey.questions[number.textContent - 1].question;
 
 async function getQuestion(surveyId) {
 	try {
 		res = await fetch("/api/surveys/get", {
-			method: "GET",
+			method: "POST",
 			credentials: "include",
 			body: JSON.stringify({
 				surveyId: surveyId,
@@ -31,7 +39,7 @@ function getUrlParams(target) {
 	const urlString = window.location.search.substring(1);
 	const params = urlString.split("&");
 	for (let index = 0; index < params.length; index++) {
-		const pair = params[i].split("=");
+		const pair = params[index].split("=");
 		if (pair[0] === target) {
 			return pair[1];
 		}

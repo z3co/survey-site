@@ -17,25 +17,26 @@ app.use("/api/routes", require("./auth/routes.js"));
 app.use("/api/surveys", require("./survey/routes.js"));
 
 app.get("/", (req, res) => res.render("login"));
-app.get("/surveyname", userAuth, (req, res) => res.render("surveyName"))
+app.get("/surveyname", userAuth, (req, res) => res.render("surveyName"));
 app.get("/login", (req, res) => res.render("login"));
 app.get("/register", (req, res) => res.render("register"));
 app.get("/survey", userAuth, (req, res) => res.render("survey"));
+app.get("/answer", userAuth, (req, res) => res.render("answer"));
 
 // If no route matches the url we send them a 404 page
 app.use((req, res, next) => {
-	res.status(404).render("404");
+  res.status(404).render("404");
 });
 
 const Server = app.listen(PORT, () => {
-	console.log(`Server listening on port ${PORT}`);
+  console.log(`Server listening on port ${PORT}`);
 });
 
 process.on("unhandledRejection", (err) => {
-	console.error("Unhandled rejection", err.message);
-	Server.close(() => {
-		process.exit(1);
-	});
+  console.error("Unhandled rejection", err.message);
+  Server.close(() => {
+    process.exit(1);
+  });
 });
 
 module.exports = app;
