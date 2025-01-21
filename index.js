@@ -22,6 +22,7 @@ app.get("/login", (req, res) => res.render("login"));
 app.get("/register", (req, res) => res.render("register"));
 app.get("/survey", userAuth, (req, res) => res.render("survey"));
 app.get("/answer", userAuth, (req, res) => res.render("answer"));
+app.get("/search", userAuth, (req, res) => res.render("search"));
 
 // If no route matches the url we send them a 404 page
 app.use((req, res, next) => {

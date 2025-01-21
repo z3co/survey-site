@@ -47,6 +47,7 @@ exports.getAll = async (req, res, next) => {
       container.username = survey.user_id;
       container.questions = survey.questions;
       container.date = survey.date;
+      container.id = survey.id;
 
       return container;
     });

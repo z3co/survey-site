@@ -5,6 +5,7 @@ const form = document.querySelector("form");
 const surveyId = Number(getUrlParams("survey"));
 const redirect = document.querySelector("#new");
 const number = document.querySelector(".number");
+const search = document.querySelector("#search");
 
 (async () => {
 	const survey = await getQuestion(surveyId);
@@ -52,6 +53,10 @@ redirect.addEventListener("click", async (e) => {
 	location.assign("/surveyname");
 });
 
+search.addEventListener("click", async (e) => {
+	location.assign("/search");
+});
+
 form.addEventListener("submit", async (e) => {
 	e.preventDefault();
 	display.textcontent = "";
@@ -68,6 +73,7 @@ form.addEventListener("submit", async (e) => {
 		display.textContent = "You finished the survey.";
 		form.style.visibility = "hidden";
 		redirect.style.visibility = "visible";
+		search.style.visibility = "visible";
 		sessionStorage.setItem("created-survey", false);
 	}
 });
