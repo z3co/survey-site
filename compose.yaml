@@ -1,6 +1,6 @@
 services:
   nodejs:
-    build: .
+    image: ghcr.io/z3co/survey-site
     container_name: nodejs
     restart: unless-stopped
     env_file: .env
