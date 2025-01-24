@@ -36,8 +36,8 @@ JWTSECRET=your_32_byte_secret_key
 
 ```bash
 docker run -d -p 3000:3000 --name survey-site \
-  -v $(pwd)/db.json:/node/db.json \
-  -v $(pwd)/surveyDB.json:/node/surveyDB.json \
+  -v $(pwd)/db.json:/db.json \
+  -v $(pwd)/surveyDB.json:/surveyDB.json \
   --env-file .env \
   ghcr.io/z3co/survey-site:latest
 ```
