@@ -1,14 +1,14 @@
 FROM node:23-alpine
 
+USER node
+
 WORKDIR /code
 
 COPY package*.json ./
 
-RUN npm install --omit=dev
+RUN npm ci --omit=dev
 
 COPY --chown=node:node . .
-
-USER node
 
 EXPOSE 3000
 

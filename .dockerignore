@@ -1,5 +1,9 @@
 .gitignore
+.git
 *.undo
 .env
+surveyDB.json
 db.json
-/tests
+node_modules
+tests
+.github
