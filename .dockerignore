@@ -7,3 +7,9 @@ db.json
 node_modules
 tests
 .github
+jest.config.js
+LICENSE
+*.md
+Dockerfile
+compose.yaml
+nodemon.json
