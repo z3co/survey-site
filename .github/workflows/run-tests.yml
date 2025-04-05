@@ -16,8 +16,12 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 18
-      - name: Initialize db 
-        run: echo "[]" > db.json
+      - name: Create db folder
+        run: mkdir db
+      - name: Intialize Survey db
+        run: echo "[]" > db/surveyDB.jso
+      - name: Initialize user db 
+        run: echo "[]" > db/db.json
       - name: Build
         run: npm install
       - name: Run tests
