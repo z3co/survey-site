@@ -8,7 +8,7 @@ exports.register = async (req, res, next) => {
 	const { username, password } = req.body;
 
 	try {
-		const users = db.readDB("db.json");
+		const users = db.readDB("db/db.json");
 
 		if (password.length < 6) {
 			return res.status(400).json({
@@ -30,7 +30,7 @@ exports.register = async (req, res, next) => {
 
 		users.push(newUser);
 
-		db.writeDB(users, "db.json");
+		db.writeDB(users, "db/db.json");
 
 		const maxAge = 3 * 60 * 60;
 
@@ -69,7 +69,7 @@ exports.login = async (req, res, next) => {
 	}
 
 	try {
-		const users = db.readDB("db.json");
+		const users = db.readDB("db/db.json");
 
 		const user = users.find((user) => user.username === username);
 

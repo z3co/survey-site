@@ -7,7 +7,7 @@ exports.create = async (req, res, next) => {
   const { name, questions, date } = req.body;
 
   try {
-    const data = db.readDB("surveyDB.json");
+    const data = db.readDB("db/surveyDB.json");
     if (!name || !questions || !date) {
       throw new Error("Not enough data provided");
     }
@@ -22,7 +22,7 @@ exports.create = async (req, res, next) => {
 
     data.push(newSurvey);
 
-    db.writeDB(data, "surveyDB.json");
+    db.writeDB(data, "db/surveyDB.json");
 
     res.status(201).json({
       message: "Survey created successfully",
@@ -39,7 +39,7 @@ exports.create = async (req, res, next) => {
 
 exports.getAll = async (req, res, next) => {
   try {
-    const surveys = db.readDB("surveyDB.json");
+    const surveys = db.readDB("db/surveyDB.json");
 
     const surveyMap = surveys.map((survey) => {
       const container = {};
@@ -68,7 +68,7 @@ exports.getAll = async (req, res, next) => {
 exports.getOne = async (req, res, next) => {
   const { surveyId } = req.body;
   try {
-    const data = db.readDB("surveyDB.json");
+    const data = db.readDB("db/surveyDB.json");
 
     const survey = db.findById(data, surveyId);
 
