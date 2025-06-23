@@ -11,6 +11,7 @@ const { userAuth } = require("./middleware/auth");
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "scripts")));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use("/favicon.ico", express.static("images/favicon.ico"));
 const PORT = 3000;
 app.use("/api/routes", require("./auth/routes.js"));

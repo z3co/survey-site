@@ -1,0 +1,34 @@
+:root {
+  --bg-dark: hsl(0, 0%, 2%);
+  --bg: hsl(0, 0%, 5%);
+  --bg-light: hsl(0, 0%, 10%);
+  --text: hsl(0, 0%, 95%);
+  --text-muted: hsl(0, 0%, 70%);
+}
+body.light {
+  --bg-dark: hsl(0, 0%, 90%);
+  --bg: hsl(0, 0%, 95%);
+  --bg-light: hsl(0, 0%, 98%);
+  --text: hsl(0, 0%, 5%);
+  --text-muted: hsl(0, 0%, 30%);
+}
+body {
+  background: var(--bg-dark);
+  color: var(--text-muted);
+}
+button {
+  margin: 0.5rem;
+  background: var(--bg-light);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: solid 1px var(--bg);
+}
+button:focus {
+  outline: none;
+}
+h1 {
+  color: var(--text);
+}
