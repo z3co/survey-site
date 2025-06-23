@@ -4,23 +4,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="/css/login.css">
+  <link rel="stylesheet" type="text/css" href="/css/login.css">
   <title>Login Page</title>
 </head>
 
   <body>
     <h1>Login Page</h1>
-    <button onClick="toggle()">Switch mode</button>
-    <form>
-      <div class="error" style="background: red"></div>
-      <br>
-      <label for="username">Username</label><br />
-      <input type="text" id="username" required /><br />
-      <label for="password">Password</label><br />
-      <input type="password" id="password" required /><br />
-      <button type="submit" value="login" >Submit</button><br />
-    </form>
-    <a href="/register">Don't have an account yet? register!</a>
+    <button class="toggle" onClick="toggle()">Switch mode</button>
+    <div class="card">
+      <form>
+        <div class="error" style="background: red"></div>
+        <br>
+        <label for="username">Username</label><br />
+        <input type="text" id="username" required /><br />
+        <label for="password">Password</label><br />
+        <input type="password" id="password" required /><br />
+        <button type="submit" value="login" >Submit</button><br />
+      </form>
+      <a href="/register">Don't have an account yet? register!</a>
+    </div>
     <script src="../login.js" type="text/javascript"></script>
     <script>
     function toggle() {

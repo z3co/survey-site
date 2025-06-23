@@ -81,7 +81,7 @@ exports.getOne = async (req, res, next) => {
       survey: survey,
     });
   } catch (error) {
-    console.error("Error getting or sending survey");
+    console.error("Error getting or sending survey", error);
     res.status(400).json({
       message: "Error retriving survey",
       error: error.message,
